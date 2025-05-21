@@ -43,7 +43,10 @@ const FileUploader = ({ onFileUpload }: FileUploaderProps) => {
   };
 
   const isValidFile = (file: File): boolean => {
-    return file.name.endsWith('.geojson') || file.type === 'application/geo+json';
+    return file.name.endsWith('.geojson') || 
+           file.name.endsWith('.json') || 
+           file.type === 'application/geo+json' || 
+           file.type === 'application/json';
   };
 
   const triggerFileInput = () => {
@@ -85,7 +88,7 @@ const FileUploader = ({ onFileUpload }: FileUploaderProps) => {
           Drag & Drop your GeoJSON file here
         </h3>
         <p className="text-sm text-gray-500 max-w-xs">
-          Or click the button below to browse files. Only .geojson files are supported.
+          Or click the button below to browse files. Both .geojson and .json files are supported.
         </p>
         <Button
           onClick={triggerFileInput}
@@ -97,7 +100,7 @@ const FileUploader = ({ onFileUpload }: FileUploaderProps) => {
           type="file"
           ref={fileInputRef}
           onChange={handleFileInputChange}
-          accept=".geojson,application/geo+json"
+          accept=".geojson,.json,application/geo+json,application/json"
           className="hidden"
         />
       </div>
